@@ -32,6 +32,16 @@ public class StringListImpl implements StringList {
         }
     }
 
+    private void createNewArrayWithDoubleLenght() {
+        String[] newArrayString = new String[size() * 2];
+        for (int i = 0; i < arrayString.length; i++) {
+            if (arrayString[i] != null) {
+                newArrayString[i] = arrayString[i];
+            }
+        }
+        arrayString = newArrayString;
+    }
+
 
     @Override
     public String add(String item) {
@@ -41,7 +51,7 @@ public class StringListImpl implements StringList {
                 arrayString[i] = item;
                 return item;
             } else if (size() == arrayString.length) {
-                throw new StringOutOfBoundException("массив заполнен");
+                createNewArrayWithDoubleLenght();
             }
         }
         return null;
@@ -51,11 +61,12 @@ public class StringListImpl implements StringList {
     public String add(int index, String item) {
         checkParametrs(index);
         checkParametrs(item);
+        if (size() == arrayString.length) {
+            createNewArrayWithDoubleLenght();
+        }
         if (arrayString[index] == null) {
             arrayString[index] = item;
             return item;
-        } else if (size() == arrayString.length) {
-            throw new StringOutOfBoundException("массив заполнен");
         } else if (arrayString[index] != null) {
             for (int i = arrayString.length - 1; i > index; i--) {
                 if (arrayString[i - 1] == null) {
@@ -96,7 +107,14 @@ public class StringListImpl implements StringList {
             for (int i = index; i < arrayString.length - 1; i++) {
                 arrayString[i] = arrayString[i + 1];
             }
-            arrayString[arrayString.length - 1] = null;
+            arrayString[arrayString.length-1]=null;
+            String[]newArray=new String[size()];
+            for (int j = 0; j < arrayString.length; j++) {
+                if (arrayString[j] != null) {
+                    newArray[j]=arrayString[j];
+                }
+            }
+            arrayString=newArray;
             return result;
         }
         throw new StringOutOfBoundException("элемент по индексу " + index + " пуст");

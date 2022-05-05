@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,16 +10,13 @@ public class Main {
         System.out.println(strings.add("www"));
         System.out.println(strings.add("rrr"));
         System.out.println(strings.add("aaa"));
-//        System.out.println(strings.add("aaa"));
+//        System.out.println(strings.add(4,"ggg"));
         System.out.println(strings);
-//        System.out.println(strings.add(2,"jjj"));
+        System.out.println(strings.remove(0));
+        System.out.println(strings);
+//        System.out.println(strings.remove(1));
 //        System.out.println(strings);
 
-        System.out.println(secondStrings.add("www"));
-        System.out.println(secondStrings.add("rrr"));
-        System.out.println(secondStrings.add("aaa"));
-        System.out.println(secondStrings);
 
-        System.out.println(strings.equals(secondStrings));
     }
 }
